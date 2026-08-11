@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Be Rich Fast? — English Class</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cisbox palette */
+    --cbx-forest:#215B33;   /* Primary / Forest Green */
+    --cbx-mid:#2E7E46;      /* Mid Green */
+    --cbx-bright:#2DBC45;   /* Vivid Green */
+    --cbx-teal:#168B71;
+    --cbx-soft:#8FD8A5;     /* light tint of Vivid Green */
+    --cream:#FDFBF2;
+    --sun:#FFD447;
+    --coral:#FF7A59;
+    --ink:#1E3A29;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;color:var(--ink);
+    background:linear-gradient(160deg,var(--cbx-mid) 0%,var(--cbx-soft) 45%,var(--cream) 100%);
+    overflow:hidden;user-select:none;
+  }
+  #stage{height:100dvh;display:flex;flex-direction:column;cursor:pointer}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+  .badge{font-family:'Fredoka',sans-serif;font-weight:600;font-size:15px;background:var(--cbx-forest);color:#fff;
+    padding:6px 14px;border-radius:999px;letter-spacing:.4px;box-shadow:0 2px 8px rgba(33,91,51,.35)}
+  .dots{display:flex;gap:7px}
+  .dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.45);transition:all .3s}
+  .dot.on{background:var(--sun);transform:scale(1.35);box-shadow:0 0 0 2px rgba(255,255,255,.6)}
+  .dot.done{background:#fff}
+
+  .slidewrap{flex:1;display:flex;align-items:center;justify-content:center;padding:0 24px 8px}
+  .slide{
+    width:min(1200px,96%);background:var(--card);border-radius:32px;
+    box-shadow:0 14px 40px rgba(33,91,51,.25), 0 0 0 6px rgba(255,255,255,.5);
+    padding:clamp(36px,5vh,64px) clamp(44px,5vw,80px);
+    display:grid;grid-template-columns:1fr clamp(200px,24vw,320px);gap:clamp(24px,3vw,48px);align-items:center;
+    animation:slideIn .5s cubic-bezier(.2,.9,.3,1.2);
+    min-height:min(640px,78dvh);
+  }
+  @keyframes slideIn{from{opacity:0;transform:translateX(60px) rotate(1.5deg)}to{opacity:1;transform:none}}
+  .slide.bye{animation:slideOut .3s ease forwards}
+  @keyframes slideOut{to{opacity:0;transform:translateX(-60px) rotate(-1.5deg)}}
+
+  .kicker{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--cbx-teal);font-size:clamp(16px,1.4vw,20px);letter-spacing:1px;text-transform:uppercase}
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(28px,4.8vw,60px);line-height:1.12;margin:6px 0 clamp(20px,3vh,32px)}
+  h1 .hl{background:linear-gradient(transparent 55%,var(--sun) 55%);padding:0 4px;border-radius:4px}
+
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:clamp(14px,2.2vh,22px)}
+  .bullet{
+    display:flex;align-items:center;gap:clamp(14px,1.5vw,20px);font-size:clamp(17px,2.3vw,30px);font-weight:700;
+    opacity:0;transform:translateY(14px);transition:opacity .05s;position:relative;
+    padding:clamp(10px,1.6vh,16px) clamp(14px,1.5vw,20px) clamp(10px,1.6vh,16px) clamp(10px,1.2vw,16px);border-radius:18px;
+  }
+  .bullet.show{opacity:1;transform:none;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{0%{transform:scale(.7) translateY(14px)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+  .bullet.current{background:#EAF7EE;box-shadow:0 0 0 3px var(--cbx-bright)}
+  .bullet.current .bicon{animation:wiggle 1s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg) scale(1.15)}}
+  .bicon{font-size:clamp(30px,3vw,42px);flex:0 0 auto;display:inline-block}
+  .arrow{position:absolute;left:clamp(-44px,-3vw,-34px);font-size:clamp(24px,2.4vw,34px);opacity:0;transition:opacity .2s}
+  .bullet.current .arrow{opacity:1;animation:point .7s ease-in-out infinite alternate}
+  @keyframes point{from{transform:translateX(0)}to{transform:translateX(7px)}}
+
+  .art{
+    font-size:clamp(80px,15vw,200px);text-align:center;line-height:1;
+    filter:drop-shadow(0 8px 14px rgba(33,91,51,.2));
+    animation:float 3s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+  .art .sub{display:block;font-size:clamp(16px,1.6vw,22px);font-family:'Fredoka',sans-serif;font-weight:600;color:var(--ink);
+    margin-top:14px;background:var(--sun);border-radius:999px;padding:8px 16px;transform:rotate(-2deg)}
+
+  .hint{
+    text-align:center;padding:10px 0 18px;font-weight:800;font-size:14px;color:var(--cbx-forest);
+    animation:blink 1.6s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:.45}50%{opacity:1}}
+
+  .bar{height:6px;background:rgba(33,91,51,.18)}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cbx-forest),var(--cbx-bright));border-radius:0 99px 99px 0;transition:width .4s;width:0}
+
+  @media (max-width:640px){
+    .slide{grid-template-columns:1fr;padding:26px 22px;gap:10px}
+    .art{order:-1;font-size:64px}
+    .art .sub{display:inline-block;font-size:13px}
+    .arrow{left:-22px;font-size:18px}
+    .bullet{gap:10px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .bullet{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="bar"><i id="bar"></i></div>
+<div id="stage">
+  <div class="topbar">
+    <div class="badge" id="counter">1 / 10</div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="slidewrap"><div class="slide" id="slide"></div></div>
+  <div class="hint">👆 Click anywhere (or press →) to continue!</div>
+</div>
+
+<script>
+const SLIDES = [
+  {
+    kicker:"Let's talk!",
+    title:"How to be <span class='hl'>rich</span> fast? 🤑",
+    art:"🏞️", artSub:"Buy land, get rich!",
+    bullets:[
+      {i:"👋", t:"Hello everyone! Welcome to my topic!"},
+      {i:"💰", t:"Everybody wants to be rich fast."},
+      {i:"🗺️", t:"In Vietnam, the answer is... LAND!"},
+    ]
+  },
+  {
+    kicker:"Slide 2",
+    title:"What is <span class='hl'>ph\u00E2n l\u00F4 b\u00E1n n\u1EC1n</span>? 🧩",
+    art:"📐", artSub:"Cut, cut, cut!",
+    bullets:[
+      {i:"🌾", t:"Buy one big piece of land."},
+      {i:"✂️", t:"Cut it into many small plots."},
+      {i:"🏷️", t:"Sell each plot for more money!"},
+    ]
+  },
+  {
+    kicker:"Slide 3",
+    title:"The <span class='hl'>dream</span> 💭",
+    art:"🏝️", artSub:"Future golden land!",
+    bullets:[
+      {i:"📈", t:"Buy today, price doubles tomorrow!"},
+      {i:"🛣️", t:"\u201CA new road is coming soon!\u201D"},
+      {i:"✈️", t:"\u201CAn airport will be built here!\u201D"},
+    ]
+  },
+  {
+    kicker:"Slide 4",
+    title:"The <span class='hl'>reality</span> 😅",
+    art:"🐄", artSub:"Only cows live here",
+    bullets:[
+      {i:"🌵", t:"The land is far, far away."},
+      {i:"🚫", t:"No road, no water, no people."},
+      {i:"⏳", t:"You wait ten years... still empty."},
+    ]
+  },
+  {
+    kicker:"Slide 5",
+    title:"Land <span class='hl'>fever</span> 🌡️",
+    art:"🔥", artSub:"Everyone is buying!",
+    bullets:[
+      {i:"☕", t:"At coffee shops, everyone talks about land."},
+      {i:"📞", t:"Agents call you every day: \u201CGood price!\u201D"},
+      {i:"🏃", t:"People run to buy before prices go up."},
+    ]
+  },
+  {
+    kicker:"Slide 6",
+    title:"Who gets <span class='hl'>rich</span>? 🏆",
+    art:"🎩", artSub:"Not you, sorry!",
+    bullets:[
+      {i:"🥇", t:"The first buyers can win big."},
+      {i:"🥶", t:"The last buyers hold cold, empty land."},
+      {i:"🎲", t:"It is like a game of luck."},
+    ]
+  },
+  {
+    kicker:"Slide 7",
+    title:"Better ways to build <span class='hl'>wealth</span> 🌱",
+    art:"🐢", artSub:"Slow but sure!",
+    bullets:[
+      {i:"💼", t:"Work hard and learn new skills."},
+      {i:"🏦", t:"Save a little money every month."},
+      {i:"🧠", t:"Invest in things you understand."},
+    ]
+  },
+  {
+    kicker:"Funny but true!",
+    title:"Get rich <span class='hl'>fast</span>... or not 🤣",
+    art:"🤡", artSub:"Where is my money?!",
+    bullets:[
+      {i:"🏜️", t:"I bought land... my wife bought stress."},
+      {i:"📉", t:"Fast money comes fast, goes faster!"},
+      {i:"🧧", t:"My best investment? Lucky money from grandma!"},
+    ]
+  },
+  {
+    kicker:"Magic phrases",
+    title:"Useful <span class='hl'>English</span> phrases ✨",
+    art:"🪄", artSub:"Say it like a pro!",
+    bullets:[
+      {i:"💬", t:"\u201CIt sounds too good to be true.\u201D"},
+      {i:"💬", t:"\u201CDon\u2019t put all your eggs in one basket.\u201D"},
+      {i:"💬", t:"\u201CEasy come, easy go.\u201D"},
+    ]
+  },
+  {
+    kicker:"Let's discuss!",
+    title:"Your <span class='hl'>turn</span>! 🎤",
+    art:"🙌", artSub:"Thank you!",
+    bullets:[
+      {i:"❓", t:"Would you buy land to get rich fast?"},
+      {i:"❓", t:"What is a safe way to invest money?"},
+      {i:"🙏", t:"Thank you for listening!"},
+    ]
+  },
+];
+
+let s = 0, b = -1;
+const slideEl = document.getElementById('slide');
+const dotsEl = document.getElementById('dots');
+const counter = document.getElementById('counter');
+const bar = document.getElementById('bar');
+
+SLIDES.forEach(()=>{const d=document.createElement('div');d.className='dot';dotsEl.appendChild(d);});
+
+function render(){
+  const d = SLIDES[s];
+  slideEl.innerHTML = `
+    <div>
+      <div class="kicker">${d.kicker}</div>
+      <h1>${d.title}</h1>
+      <ul class="bullets">
+        ${d.bullets.map((x,i)=>`
+          <li class="bullet" data-i="${i}">
+            <span class="arrow">👉</span>
+            <span class="bicon">${x.i}</span><span>${x.t}</span>
+          </li>`).join('')}
+      </ul>
+    </div>
+    <div class="art">${d.art}<span class="sub">${d.artSub}</span></div>`;
+  updateBullets();
+  updateChrome();
+}
+
+function updateBullets(){
+  slideEl.querySelectorAll('.bullet').forEach((el,i)=>{
+    el.classList.toggle('show', i<=b);
+    el.classList.toggle('current', i===b);
+  });
+}
+
+function updateChrome(){
+  counter.textContent = (s+1)+' / '+SLIDES.length;
+  [...dotsEl.children].forEach((d,i)=>{
+    d.className='dot'+(i===s?' on':i<s?' done':'');
+  });
+  const totalSteps = SLIDES.reduce((a,x)=>a+x.bullets.length,0);
+  let done = 0;
+  for(let i=0;i<s;i++) done += SLIDES[i].bullets.length;
+  done += (b+1);
+  bar.style.width = (done/totalSteps*100)+'%';
+}
+
+function next(){
+  const d = SLIDES[s];
+  if(b < d.bullets.length-1){ b++; updateBullets(); updateChrome(); }
+  else if(s < SLIDES.length-1){
+    slideEl.classList.add('bye');
+    setTimeout(()=>{ s++; b=-1; slideEl.classList.remove('bye'); render(); },260);
+  }
+}
+function prev(){
+  if(b >= 0){ b--; updateBullets(); updateChrome(); }
+  else if(s > 0){
+    s--; b = SLIDES[s].bullets.length-1; render();
+  }
+}
+
+document.getElementById('stage').addEventListener('click', next);
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter') {e.preventDefault();next();}
+  if(e.key==='ArrowLeft') {e.preventDefault();prev();}
+});
+
+render();
+</script>
+</body>
+</html>
